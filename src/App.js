@@ -15,15 +15,18 @@ function App() {
   }, []);
   return (
     <>
-      <h1>The coins! ({coins.length})</h1>
-      {loading ? <strong>Loading...</strong> : null}
-      <ul>
-        {coins.map((coin) => (
-          <li key={coin.id}>
-            {coin.name} ({coin.symbol}) : ${coin.quotes.USD.price} USD
-          </li>
-        ))}
-      </ul>
+      <h1>The coins! {loading ? "" : `(${coins.length})`} </h1>
+      {loading ? (
+        <strong>Loading...</strong>
+      ) : (
+        <select>
+          {coins.map((coin) => (
+            <option>
+              {coin.name} ({coin.symbol}) : ${coin.quotes.USD.price} USD
+            </option>
+          ))}
+        </select>
+      )}
     </>
   );
 }
